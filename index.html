@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="loader"><img src="logo.jpg" alt="Vision Agency"><i></i></div>
+<div id="bar"></div><div id="cur"></div>
 <canvas id="space" aria-hidden="true"></canvas>
 
 <header class="nav">
@@ -25,7 +27,7 @@
 
 <main>
   <section id="home" class="hero">
-    <h1>We build brands<br>that pull people in.</h1>
+    <h1 id="h1" data-t="We build brands&#10;that pull people in."><span class="ph">We build brands<br>that pull people in.</span></h1><h1 hidden>We build brands<br>that pull people in.</h1>
     <p>Graphic design, web development and brand identity for companies that want to be seen from far away.</p>
     <div class="cta">
       <a href="#contact" class="btn">Start a project</a>
@@ -33,21 +35,22 @@
     </div>
   </section>
 
+  <div class="marquee" aria-hidden="true"><div><span>Graphic design</span><span>✦</span><span>Web development</span><span>✦</span><span>Brand identity</span><span>✦</span><span>Motion</span><span>✦</span><span>Graphic design</span><span>✦</span><span>Web development</span><span>✦</span><span>Brand identity</span><span>✦</span><span>Motion</span><span>✦</span></div></div>
   <section id="services" class="section">
     <h2>What we do</h2>
     <div class="grid">
-      <article class="card"><h3>Graphic design</h3><p>Campaigns, social kits, packaging and print that look sharp everywhere they land.</p></article>
-      <article class="card"><h3>Web development</h3><p>Fast, responsive websites and web apps, designed and built by one team.</p></article>
-      <article class="card"><h3>Brand identity</h3><p>Logos, color, type and guidelines that make your brand easy to recognize and hard to forget.</p></article>
+      <article class="card" data-tilt><h3>Graphic design</h3><p>Campaigns, social kits, packaging and print that look sharp everywhere they land.</p></article>
+      <article class="card" data-tilt><h3>Web development</h3><p>Fast, responsive websites and web apps, designed and built by one team.</p></article>
+      <article class="card" data-tilt><h3>Brand identity</h3><p>Logos, color, type and guidelines that make your brand easy to recognize and hard to forget.</p></article>
     </div>
   </section>
 
   <section id="work" class="section">
     <h2>Selected work</h2>
     <div class="grid work">
-      <a class="card proj" href="#contact"><span class="tag">Brand identity</span><h3>Orbit Coffee</h3></a>
-      <a class="card proj" href="#contact"><span class="tag">Website</span><h3>Nova Fitness</h3></a>
-      <a class="card proj" href="#contact"><span class="tag">Graphic design</span><h3>Lumen Studio</h3></a>
+      <a class="card proj" data-tilt href="#contact"><span class="tag">Brand identity</span><h3>Orbit Coffee</h3></a>
+      <a class="card proj" data-tilt href="#contact"><span class="tag">Website</span><h3>Nova Fitness</h3></a>
+      <a class="card proj" data-tilt href="#contact"><span class="tag">Graphic design</span><h3>Lumen Studio</h3></a>
     </div>
   </section>
 
