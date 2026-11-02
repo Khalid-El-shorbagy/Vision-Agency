@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vision Agency — Design, Web &amp; Brand Identity</title>
+<meta name="description" content="Vision Agency builds graphic design, websites and brand identities for ambitious brands.">
+<link rel="icon" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="space" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <a href="#home" class="brand"><img src="logo.jpg" alt="" width="44" height="44"><span>Vision Agency</span></a>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="btn small">Start a project</a>
+  </nav>
+</header>
+
+<main>
+  <section id="home" class="hero">
+    <h1>We build brands<br>that pull people in.</h1>
+    <p>Graphic design, web development and brand identity for companies that want to be seen from far away.</p>
+    <div class="cta">
+      <a href="#contact" class="btn">Start a project</a>
+      <a href="#work" class="btn ghost">See our work</a>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <h2>What we do</h2>
+    <div class="grid">
+      <article class="card"><h3>Graphic design</h3><p>Campaigns, social kits, packaging and print that look sharp everywhere they land.</p></article>
+      <article class="card"><h3>Web development</h3><p>Fast, responsive websites and web apps, designed and built by one team.</p></article>
+      <article class="card"><h3>Brand identity</h3><p>Logos, color, type and guidelines that make your brand easy to recognize and hard to forget.</p></article>
+    </div>
+  </section>
+
+  <section id="work" class="section">
+    <h2>Selected work</h2>
+    <div class="grid work">
+      <a class="card proj" href="#contact"><span class="tag">Brand identity</span><h3>Orbit Coffee</h3></a>
+      <a class="card proj" href="#contact"><span class="tag">Website</span><h3>Nova Fitness</h3></a>
+      <a class="card proj" href="#contact"><span class="tag">Graphic design</span><h3>Lumen Studio</h3></a>
+    </div>
+  </section>
+
+  <section id="about" class="section about">
+    <h2>Small team. Wide view.</h2>
+    <p>Vision Agency is a digital studio working across design, code and identity. We stay close to every project, so what we ship looks and works the way you pictured it.</p>
+    <ul class="stats">
+      <li><b data-n="120">0</b>projects delivered</li>
+      <li><b data-n="45">0</b>happy clients</li>
+      <li><b data-n="6">0</b>years in business</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="section contact">
+    <h2>Tell us about your project</h2>
+    <form id="form">
+      <input name="name" placeholder="Your name" required aria-label="Your name">
+      <input name="email" type="email" placeholder="Email address" required aria-label="Email address">
+      <textarea name="msg" rows="4" placeholder="What are you building?" required aria-label="Project details"></textarea>
+      <button class="btn" type="submit">Send message</button>
+      <p id="note" role="status"></p>
+    </form>
+  </section>
+</main>
+
+<footer>© <span id="yr"></span> Vision Agency. All rights reserved.</footer>
+<script src="script.js"></script>
+</body>
+</html>
