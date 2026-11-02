@@ -108,3 +108,60 @@ document.getElementById('form').addEventListener('submit', e => {
   location.href = `mailto:hello@visionagency.com?subject=${encodeURIComponent('Project from ' + d.get('name'))}&body=${encodeURIComponent(d.get('msg') + '\n\n' + d.get('email'))}`;
   document.getElementById('note').textContent = 'Opening your email app. You can also write to hello@visionagency.com.';
 });
+
+// ================= ADVANCED LAYER =================
+let mx = 0, my = 0, tx = 0, ty = 0;
+const bhPos = () => { const r = Math.min(W, H) * .13; return { r, x: W * (W < 800 ? .75 : .74), y: H * .42 - scrollY * .15 }; };
+// stars now react to the mouse and bend around the black hole (gravitational lensing)
+function drawStars() {
+  mx += (tx - mx) * .05; my += (ty - my) * .05;
+  const b = bhPos();
+  stars.forEach(s => {
+    let x = s.x + mx * s.z * 40, y = ((s.y - scrollY * s.z * .25 + t * .004 * s.z) % H + H) % H + my * s.z * 40;
+    const dx = x - b.x, dy = y - b.y, d = Math.hypot(dx, dy);
+    if (d < b.r * 5 && d > 1) { const k = 1 + (b.r * 5 - d) / (b.r * 5) * (b.r * 1.6) / d; x = b.x + dx * k; y = b.y + dy * k; }
+    if (d < b.r * 1.05) return;
+    ctx.globalAlpha = .4 + .6 * Math.abs(Math.sin(t * .001 * s.z + s.p));
+    ctx.fillStyle = s.z > .8 ? '#e8b8ff' : '#fff';
+    ctx.beginPath(); ctx.arc(x, y, s.s * s.z, 0, 6.28); ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+}
+addEventListener('pointermove', e => {
+  tx = e.clientX / W - .5; ty = e.clientY / H - .5;
+  const c = document.getElementById('cur'); c.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+});
+
+// loader
+addEventListener('load', () => setTimeout(() => { document.getElementById('loader').classList.add('done'); scramble(); }, 1300));
+
+// scroll progress
+const bar = document.getElementById('bar');
+addEventListener('scroll', () => bar.style.transform = `scaleX(${pageYOffset / (document.body.scrollHeight - innerHeight)})`, { passive: true });
+
+// headline decode effect
+function scramble() {
+  const el = document.getElementById('h1'), txt = el.dataset.t, ch = '█▓▒░<>/\\+*#01';
+  if (reduce) { el.textContent = txt; return; }
+  let f = 0;
+  const id = setInterval(() => {
+    el.textContent = [...txt].map((c, i) => c === '\n' || c === ' ' ? c : i < f ? c : ch[Math.random() * ch.length | 0]).join('');
+    if ((f += 1.1) > txt.length) { clearInterval(id); el.textContent = txt; }
+  }, 32);
+}
+
+// 3D tilt + spotlight on cards, magnetic buttons
+if (!reduce) {
+  document.querySelectorAll('[data-tilt]').forEach(c => {
+    c.addEventListener('pointermove', e => {
+      const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      c.style.transform = `perspective(800px) rotateY(${(x - .5) * 14}deg) rotateX(${(.5 - y) * 14}deg) translateY(-6px)`;
+      c.style.setProperty('--mx', x * 100 + '%'); c.style.setProperty('--my', y * 100 + '%');
+    });
+    c.addEventListener('pointerleave', () => c.style.transform = '');
+  });
+  document.querySelectorAll('.btn').forEach(b => {
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .25}px,${(e.clientY - r.top - r.height / 2) * .35}px)`; });
+    b.addEventListener('pointerleave', () => b.style.transform = '');
+  });
+}
