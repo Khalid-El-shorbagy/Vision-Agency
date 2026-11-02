@@ -50,3 +50,23 @@ footer{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.9rem}
 
 @media(max-width:700px){.nav nav a:not(.btn){display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ---- advanced layer ---- */
+#loader{position:fixed;inset:0;z-index:100;background:#02060E;display:grid;place-content:center;justify-items:center;gap:1.5rem;transition:opacity .9s,visibility .9s}
+#loader img{width:120px;mix-blend-mode:lighten;animation:pulse 1.6s ease-in-out infinite}
+#loader i{width:160px;height:2px;background:linear-gradient(90deg,transparent,var(--glow),transparent);background-size:200%;animation:sweep 1.2s linear infinite}
+#loader.done{opacity:0;visibility:hidden}
+@keyframes pulse{50%{transform:scale(1.08);filter:drop-shadow(0 0 24px #c21bff)}}
+@keyframes sweep{to{background-position:-200%}}
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0;transform:scaleX(0);background:linear-gradient(90deg,var(--violet),#f3b0ff);z-index:50;box-shadow:0 0 12px var(--glow)}
+#cur{position:fixed;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(#9303c52e,transparent 65%);transition:opacity .3s}
+@media(hover:none){#cur{display:none}}
+.ph{visibility:hidden}.hero h1{white-space:pre-line}
+.marquee{overflow:hidden;border-block:1px solid #9303c540;background:#02060E80;backdrop-filter:blur(8px);padding:1.1rem 0}
+.marquee div{display:flex;gap:2.5rem;width:max-content;animation:slide 28s linear infinite;font:700 1.6rem Syne,sans-serif;color:#9303c5}
+.marquee span:nth-child(4n+1){color:#efe6f7}
+@keyframes slide{to{transform:translateX(-50%)}}
+.card{transform-style:preserve-3d;will-change:transform;transition:transform .15s,border-color .3s,box-shadow .3s}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),#c21bff33,transparent 60%)}
+.card{position:relative}
+.btn{will-change:transform}
